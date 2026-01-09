@@ -1,4 +1,4 @@
-[index.html](https://github.com/user-attachments/files/24535902/index.html)
+[index.html](https://github.com/user-attachments/files/24535947/index.html)
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -528,6 +528,11 @@
         .image-box img {
             border-radius: 16px;
             transition: transform 0.3s ease;
+            width: 100%;
+            max-height: 450px;
+            /* Ensures image isn't too tall/disproportionate */
+            object-fit: cover;
+            /* Keeps image filled without stretching */
         }
 
         .image-box img:hover {
