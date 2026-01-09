@@ -1,4 +1,4 @@
-[index.html](https://github.com/user-attachments/files/24535947/index.html)
+[index.html](https://github.com/user-attachments/files/24536040/index.html)
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -44,7 +44,8 @@
         body {
             font-family: var(--font-main);
             color: var(--text-color);
-            background-color: var(--bg-light);
+            background-color: #111827;
+            /* Force explicit dark gray */
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
@@ -566,7 +567,7 @@
         <div class="container">
             <div class="split-layout">
                 <div class="image-box">
-                    <img src="relief_woman.jpg" alt="Mulher respirando ar puro na natureza"
+                    <img src="hero.png" alt="Mulher respirando ar puro na natureza"
                         class="responsive-img shadow-img rounded">
                 </div>
                 <div class="content-box">
