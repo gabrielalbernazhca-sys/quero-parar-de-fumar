@@ -527,6 +527,11 @@
         .image-box img {
             border-radius: 16px;
             transition: transform 0.3s ease;
+            width: 100%;
+            max-height: 450px;
+            /* Ensures image isn't too tall/disproportionate */
+            object-fit: cover;
+            /* Keeps image filled without stretching */
         }
 
         .image-box img:hover {
