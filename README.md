@@ -1,4 +1,4 @@
-[index.html](https://github.com/user-attachments/files/24535744/index.html)
+[index.html](https://github.com/user-attachments/files/24535902/index.html)
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -120,7 +120,8 @@
         /* Hero Section with Animated Background */
         .hero {
             padding: 100px 0 100px;
-            background-color: #000;
+            background-color: var(--bg-light);
+            /* Changed from #000 to match page bg */
             position: relative;
             overflow: hidden;
             color: #ffffff;
@@ -135,7 +136,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('bg_smoke.png') no-repeat center center/cover;
+            /* Gradient adapted to Dark Gray (#111827) instead of pure black */
+            background: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.95)), url('bg_smoke.png') no-repeat center center/cover;
             background-size: 120%;
             z-index: 1;
             animation: pan-background 20s infinite alternate linear;
@@ -559,7 +561,8 @@
         <div class="container">
             <div class="split-layout">
                 <div class="image-box">
-                    <img src="hero.png" alt="Custo do hábito" class="responsive-img shadow-img rounded">
+                    <img src="relief_woman.jpg" alt="Mulher respirando ar puro na natureza"
+                        class="responsive-img shadow-img rounded">
                 </div>
                 <div class="content-box">
                     <h2>Você se identifica com isso?</h2>
