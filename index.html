@@ -14,23 +14,24 @@
     <style>
         /* Reset & Base Styles */
         :root {
-            --primary-color: #2E8B57;
-            /* SeaGreen - Calming, Health */
-            --primary-hover: #27774A;
-            --accent-color: #FFA500;
-            /* Subtle urgency/warmth */
-            --text-color: #e5e7eb;
-            /* Light text for dark mode */
-            --text-light: #9ca3af;
-            --bg-body: #000000;
-            /* Pure Black Background */
-            --bg-card: #111827;
-            /* Very Dark Gray for cards */
+            --primary-color: #10B981;
+            /* Emerald 500 - More vibrant */
+            --primary-hover: #059669;
+            /* Emerald 600 */
+            --accent-color: #F59E0B;
+            /* Amber 500 */
+            --text-color: #F3F4F6;
+            /* Gray 100 */
+            --text-muted: #9CA3AF;
+            /* Gray 400 */
+            --bg-body: #09090b;
+            /* Zinc 950 - Richer black */
+            --bg-card: rgba(24, 24, 27, 0.7);
+            /* Zinc 900 with opacity */
+            --bg-card-border: rgba(255, 255, 255, 0.1);
             --white-text: #ffffff;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
             --font-main: 'Inter', sans-serif;
+            --glow-primary: 0 0 20px rgba(16, 185, 129, 0.3);
         }
 
         * {
@@ -45,54 +46,58 @@
             background-color: var(--bg-body);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         h1,
         h2,
         h3 {
-            line-height: 1.2;
+            line-height: 1.1;
             font-weight: 700;
             color: var(--white-text);
+            letter-spacing: -0.03em;
         }
 
         p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
         }
 
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         .text-center {
             text-align: center;
         }
 
-        /* Buttons */
+        /* Buttons & Interactions */
         .btn-cta {
             display: inline-block;
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
             color: #ffffff;
-            padding: 18px 36px;
-            font-size: 1.25rem;
+            padding: 20px 40px;
+            font-size: 1.2rem;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px 0 rgba(46, 139, 87, 0.39);
+            border-radius: 999px;
+            /* Pill shape */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
             text-align: center;
             width: 100%;
-            max-width: 400px;
-            position: relative;
-            z-index: 10;
+            max-width: 420px;
+            letter-spacing: -0.01em;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-cta:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px 0 rgba(46, 139, 87, 0.23);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+            filter: brightness(1.1);
         }
 
         .pulse {
@@ -101,54 +106,33 @@
 
         @keyframes pulse-animation {
             0% {
-                box-shadow: 0 0 0 0 rgba(46, 139, 87, 0.4);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
             }
 
             70% {
-                box-shadow: 0 0 0 10px rgba(46, 139, 87, 0);
+                box-shadow: 0 0 0 14px rgba(16, 185, 129, 0);
             }
 
             100% {
-                box-shadow: 0 0 0 0 rgba(46, 139, 87, 0);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
             }
         }
 
-        /* Hero Section - Pure Black with Text Only (or minimal smoke if working) */
+        /* Hero Section */
         .hero {
-            padding: 100px 0 100px;
-            background-color: #000000;
+            padding: 120px 0 100px;
+            background-color: var(--bg-body);
             position: relative;
             overflow: hidden;
-            color: #ffffff;
             text-align: center;
+            /* Modern Gradient Background */
+            background: radial-gradient(circle at 50% 30%, #1e3a31 0%, #09090b 60%);
         }
 
-        /* Restoring the simple dark smoke overlay functionality if desired, 
-           but ensuring background is KEY BLACK as requested */
+        /* Subtle smoke-like texture via CSS only if image fails, or keep image if it works */
         .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1)), url('./bg_smoke.png') no-repeat center center/cover;
-            background-size: 120%;
-            z-index: 1;
-            opacity: 0.6;
-            /* Subtle effect */
-            animation: pan-background 20s infinite alternate linear;
-        }
-
-        @keyframes pan-background {
-            0% {
-                background-position: 50% 50%;
-            }
-
-            100% {
-                background-position: 50% 60%;
-                transform: scale(1.1);
-            }
+            display: none;
+            /* Removing the old smoke setup to use cleaner gradient */
         }
 
         .hero .container {
@@ -157,64 +141,64 @@
         }
 
         .hero .headline {
-            color: #ffffff;
-            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-            font-size: 2.8rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            /* Responsive typography */
             margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-            font-weight: 700;
+            letter-spacing: -0.04em;
+            background: linear-gradient(to right, #ffffff, #d1d5db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
         .hero .subheadline {
-            color: #e5e7eb;
-            font-size: 1.3rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            margin-bottom: 2.5rem;
-            max-width: 700px;
+            color: var(--text-muted);
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            margin-bottom: 3rem;
+            max-width: 680px;
             margin-left: auto;
             margin-right: auto;
-        }
-
-        @media (max-width: 600px) {
-            .hero .headline {
-                font-size: 2.2rem;
-            }
-
-            .hero .subheadline {
-                font-size: 1.1rem;
-            }
+            font-weight: 400;
         }
 
         /* Sections */
         /* Removing images means simplifying these to centered text layouts */
-        .identification {
-            background-color: #0d0d0d;
-            /* Slightly lighter than pure black */
-            padding: 60px 0;
-            text-align: center;
+        /* Card Styles & Glassmorphism */
+        .identification,
+        .method-explanation,
+        .benefits,
+        .target-audience,
+        .offer {
+            /* Consistent spacing */
+            padding: 80px 0;
         }
 
-        .identification h2 {
-            margin-bottom: 40px;
-            font-size: 2rem;
+        .identification {
+            background-color: #0d0d0d;
         }
 
         .id-grid-vertical {
             display: grid;
-            gap: 20px;
-            max-width: 600px;
+            gap: 24px;
+            max-width: 700px;
             margin: 0 auto;
-            text-align: left;
         }
 
         .id-item-row {
             display: flex;
             align-items: flex-start;
-            gap: 20px;
+            gap: 24px;
             background: var(--bg-card);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--bg-card-border);
+            backdrop-filter: blur(12px);
+            transition: transform 0.2s ease;
+        }
+
+        .id-item-row:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .id-item-row .icon {
@@ -258,10 +242,17 @@
 
         .feature {
             background: var(--bg-card);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid var(--bg-card-border);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
 
         .feature h3 {
@@ -278,13 +269,14 @@
 
         .benefits-list {
             list-style: none;
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             text-align: left;
-            background: var(--bg-card);
+            background: linear-gradient(145deg, #18181b 0%, #0d0d0d 100%);
             padding: 40px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            border: 1px solid var(--bg-card-border);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
         }
 
         .benefits-list li {
@@ -326,21 +318,20 @@
 
         .audience-card {
             padding: 40px;
-            border-radius: 16px;
+            border-radius: 24px;
             color: #ffffff;
-        }
-
-        .audience-card h3 {
-            margin-bottom: 16px;
-            font-size: 1.4rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
         }
 
         .audience-card.yes {
-            background: linear-gradient(145deg, #10b981 0%, #059669 100%);
+            background: linear-gradient(145deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 78, 59, 0.1) 100%);
+            border-color: rgba(16, 185, 129, 0.3);
         }
 
         .audience-card.no {
-            background: linear-gradient(145deg, #ef4444 0%, #dc2626 100%);
+            background: linear-gradient(145deg, rgba(239, 68, 68, 0.1) 0%, rgba(127, 29, 29, 0.1) 100%);
+            border-color: rgba(239, 68, 68, 0.3);
         }
 
         /* Offer Section */
@@ -427,38 +418,47 @@
             <!-- Removed Image, Simplified to Text-Only Cards -->
             <div class="id-grid-vertical">
                 <div class="id-item-row">
-                    <div class="icon">😔</div>
-                    <p><strong>Ciclo da Frustração:</strong> Você promete que vai parar, mas a ansiedade bate e você
-                        recai.</p>
+                    <div class="icon">�</div>
+                    <p><strong>Ciclo da frustração:</strong> Você promete que vai parar, mas a ansiedade bate… e você
+                        acaba fumando de novo.</p>
                 </div>
                 <div class="id-item-row">
-                    <div class="icon">😰</div>
-                    <p><strong>Hábito Automático:</strong> Acender o cigarro já virou um reflexo, você nem percebe
-                        quando faz.</p>
+                    <div class="icon">🤖</div>
+                    <p><strong>Hábito automático:</strong> Acender o cigarro virou um reflexo. Você faz sem nem
+                        perceber.</p>
                 </div>
                 <div class="id-item-row">
                     <div class="icon">💔</div>
-                    <p><strong>Medo de Falhar:</strong> O medo de tentar e não conseguir te paralisa.</p>
+                    <p><strong>Medo de falhar:</strong> O medo de tentar e não conseguir te paralisa antes mesmo de
+                        começar.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="transition-block" style="padding: 60px 0; background-color: #000000; text-align: center;">
+        <div class="container">
+            <h3 style="color: #ffffff; font-size: 1.8rem; margin-bottom: 20px;">Você não é fraco.<br>Você só está preso
+                a um padrão emocional.</h3>
+            <p style="color: #9ca3af; font-size: 1.3rem;">E padrão se muda com processo, não com força bruta.</p>
+        </div>
+    </section>
+
     <section class="method-explanation">
         <div class="container">
-            <h2>O que é o Método 21 Dias?</h2>
+            <h2>O QUE É O MÉTODO 21 DIAS?</h2>
             <p class="lead">Não é mágica. É um processo passo a passo.</p>
             <div class="method-features">
                 <div class="feature">
-                    <h3>📅 Passo a passo diário</h3>
-                    <p>Orientações simples para aplicar um dia de cada vez.</p>
+                    <h3>� Passo a passo diário</h3>
+                    <p>Orientações simples pra aplicar um dia de cada vez, sem pressão.</p>
                 </div>
                 <div class="feature">
-                    <h3>🧠 Mentalidade e Comportamento</h3>
-                    <p>Exercícios focados em reprogramar o hábito e reduzir a ansiedade.</p>
+                    <h3>🧠 Mentalidade e comportamento</h3>
+                    <p>Exercícios focados em reduzir a ansiedade e reprogramar o hábito do cigarro.</p>
                 </div>
                 <div class="feature">
-                    <h3>📱 100% Digital</h3>
+                    <h3>📱 100% digital</h3>
                     <p>Acesse pelo celular ou computador, no seu tempo.</p>
                 </div>
             </div>
@@ -467,21 +467,18 @@
 
     <section class="benefits">
         <div class="container">
-            <h2>Recupere sua liberdade</h2>
-            <!-- Removed Image, Simplified to List Box -->
-            <p class="section-lead" style="color:#9ca3af; margin-bottom:30px;">Imagine ter fôlego para brincar com seus
-                filhos e netos, sem ser escravo do vício.</p>
+            <h2>O QUE VOCÊ VAI ENCONTRAR</h2>
 
             <ul class="benefits-list">
-                <li><span>✅</span> Reduz a ansiedade naturalmente</li>
-                <li><span>✅</span> Quebra o hábito automático do cigarro</li>
-                <li><span>✅</span> Melhora sua saúde e disposição</li>
-                <li><span>✅</span> Sem remédios caros ou efeitos colaterais</li>
-                <li><span>✅</span> Método 100% online e discreto</li>
+                <li><span>✅</span> Um plano claro de 21 dias</li>
+                <li><span>✅</span> Técnicas para lidar com a ansiedade</li>
+                <li><span>✅</span> Orientações práticas para o dia a dia</li>
+                <li><span>✅</span> Um método que respeita seu tempo</li>
+                <li><span>✅</span> Tudo explicado de forma simples, direta e sem promessas irreais.</li>
             </ul>
 
             <div class="text-center" style="margin-top: 40px;">
-                <a href="https://pay.kiwify.com.br/4izXghX" class="btn-cta">Quero o Método 21 Dias Agora</a>
+                <a href="https://pay.kiwify.com.br/4izXghX" class="btn-cta">Quero começar o Método 21 Dias agora</a>
             </div>
         </div>
     </section>
@@ -491,11 +488,19 @@
             <div class="audience-grid">
                 <div class="audience-card yes">
                     <h3>Para quem é ✔️</h3>
-                    <p>Para homens e mulheres que decidiram que querem parar de fumar e buscam um caminho guiado.</p>
+                    <ul style="list-style: none; text-align: left;">
+                        <li style="margin-bottom: 10px;">✔ Para quem sente que o cigarro virou um escape emocional</li>
+                        <li style="margin-bottom: 10px;">✔ Para quem já tentou parar e não conseguiu</li>
+                        <li style="margin-bottom: 10px;">✔ Para quem não quer usar remédios</li>
+                        <li style="margin-bottom: 10px;">✔ Para quem quer um caminho simples e possível</li>
+                    </ul>
                 </div>
                 <div class="audience-card no">
                     <h3>Para quem não é ❌</h3>
-                    <p>Para quem busca uma pílula mágica e não está disposto a fazer pequenas mudanças.</p>
+                    <ul style="list-style: none; text-align: left;">
+                        <li style="margin-bottom: 10px;">❌ Não é para quem busca milagre</li>
+                        <li style="margin-bottom: 10px;">❌ Não é para quem não quer se comprometer com o processo</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -523,6 +528,13 @@
                 <div style="margin-top:20px; font-size:0.8rem; color:#6b7280;">
                     <span>🔒 Compra 100% Segura</span>
                 </div>
+
+                <h3 style="margin-top: 40px; color: #fff; font-size: 1.5rem;">Você não precisa lutar sozinho.<br>Você só
+                    precisa de direção.</h3>
+                <div style="margin-top: 20px;">
+                    <a href="https://pay.kiwify.com.br/4izXghX" class="btn-cta pulse">Quero começar o Método 21 Dias
+                        agora</a>
+                </div>
             </div>
         </div>
     </section>
@@ -530,7 +542,8 @@
     <footer>
         <div class="container">
             <p>&copy; 2024 Método 21 Dias.</p>
-            <p style="margin-top:10px; font-size:0.8rem;">Este produto não substitui o parecer médico profissional.</p>
+            <p style="margin-top:10px; font-size:0.8rem;">Este método não substitui acompanhamento médico.<br>Os
+                resultados variam de pessoa para pessoa e dependem do comprometimento com o processo.</p>
         </div>
     </footer>
 
